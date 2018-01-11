@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmbchina.drill.dao.mapper.drill.gen.CityAreaInfoPoMapper" >
+  <resultMap id="BaseResultMap" type="com.cmbchina.drill.dao.po.drill.CityAreaInfoPo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="VOCABULARY" property="vocabulary" jdbcType="VARCHAR" />
+    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+    <result column="CITY_URL" property="cityUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, VOCABULARY, CITY_NAME, CITY_ID, CITY_URL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_city_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_city_area_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_city_area_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPoExample" >
+    delete from t_city_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPo" >
+    insert into t_city_area_info (ID, VOCABULARY, CITY_NAME, 
+      CITY_ID, CITY_URL)
+    values (#{id,jdbcType=VARCHAR}, #{vocabulary,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{cityUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPo" >
+    insert into t_city_area_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="vocabulary != null" >
+        VOCABULARY,
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="cityUrl != null" >
+        CITY_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="vocabulary != null" >
+        #{vocabulary,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityUrl != null" >
+        #{cityUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPoExample" resultType="java.lang.Integer" >
+    select count(*) from t_city_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_city_area_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vocabulary != null" >
+        VOCABULARY = #{record.vocabulary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null" >
+        CITY_NAME = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityUrl != null" >
+        CITY_URL = #{record.cityUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_city_area_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      VOCABULARY = #{record.vocabulary,jdbcType=VARCHAR},
+      CITY_NAME = #{record.cityName,jdbcType=VARCHAR},
+      CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      CITY_URL = #{record.cityUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPo" >
+    update t_city_area_info
+    <set >
+      <if test="vocabulary != null" >
+        VOCABULARY = #{vocabulary,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityUrl != null" >
+        CITY_URL = #{cityUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPo" >
+    update t_city_area_info
+    set VOCABULARY = #{vocabulary,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      CITY_ID = #{cityId,jdbcType=VARCHAR},
+      CITY_URL = #{cityUrl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_city_area_info
+    where ID = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cmbchina.drill.dao.po.drill.CityAreaInfoPoExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_city_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into t_city_area_info (ID, VOCABULARY, CITY_NAME, CITY_ID, CITY_URL)
+    values 
+    <foreach collection="recordList" item="record" separator="," >
+      (#{record.id,jdbcType=VARCHAR}, #{record.vocabulary,jdbcType=VARCHAR}, #{record.cityName,jdbcType=VARCHAR}, #{record.cityId,jdbcType=VARCHAR}, #{record.cityUrl,jdbcType=VARCHAR}
+    ) 
+    </foreach>
+  </insert>
+</mapper>

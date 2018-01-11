@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmbchina.drill.dao.mapper.drill.gen.RegionInfoPoMapper" >
+  <resultMap id="BaseResultMap" type="com.cmbchina.drill.dao.po.drill.RegionInfoPo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="REGION_ID" property="regionId" jdbcType="VARCHAR" />
+    <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
+    <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+    <result column="REGION_URL" property="regionUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, REGION_ID, REGION_NAME, CITY_ID, REGION_URL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_region_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_region_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_region_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPoExample" >
+    delete from t_region_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPo" >
+    insert into t_region_info (ID, REGION_ID, REGION_NAME, 
+      CITY_ID, REGION_URL)
+    values (#{id,jdbcType=VARCHAR}, #{regionId,jdbcType=VARCHAR}, #{regionName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{regionUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPo" >
+    insert into t_region_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="regionId != null" >
+        REGION_ID,
+      </if>
+      <if test="regionName != null" >
+        REGION_NAME,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="regionUrl != null" >
+        REGION_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionUrl != null" >
+        #{regionUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPoExample" resultType="java.lang.Integer" >
+    select count(*) from t_region_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_region_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionId != null" >
+        REGION_ID = #{record.regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionName != null" >
+        REGION_NAME = #{record.regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionUrl != null" >
+        REGION_URL = #{record.regionUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_region_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      REGION_ID = #{record.regionId,jdbcType=VARCHAR},
+      REGION_NAME = #{record.regionName,jdbcType=VARCHAR},
+      CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      REGION_URL = #{record.regionUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPo" >
+    update t_region_info
+    <set >
+      <if test="regionId != null" >
+        REGION_ID = #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        REGION_NAME = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionUrl != null" >
+        REGION_URL = #{regionUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPo" >
+    update t_region_info
+    set REGION_ID = #{regionId,jdbcType=VARCHAR},
+      REGION_NAME = #{regionName,jdbcType=VARCHAR},
+      CITY_ID = #{cityId,jdbcType=VARCHAR},
+      REGION_URL = #{regionUrl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_region_info
+    where ID = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cmbchina.drill.dao.po.drill.RegionInfoPoExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_region_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into t_region_info (ID, REGION_ID, REGION_NAME, CITY_ID, REGION_URL)
+    values 
+    <foreach collection="recordList" item="record" separator="," >
+      (#{record.id,jdbcType=VARCHAR}, #{record.regionId,jdbcType=VARCHAR}, #{record.regionName,jdbcType=VARCHAR}, #{record.cityId,jdbcType=VARCHAR}, #{record.regionUrl,jdbcType=VARCHAR}
+    ) 
+    </foreach>
+  </insert>
+</mapper>

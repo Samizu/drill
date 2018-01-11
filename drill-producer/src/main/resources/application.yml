@@ -1,0 +1,16 @@
+server:
+  port: 8084
+
+spring:
+  profiles:
+    active: dev
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:29091,127.0.0.1:29092
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    drill:
+      url: jdbc:mysql://127.0.0.1:23306/drill?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+      username: nep
+      password: nep123
